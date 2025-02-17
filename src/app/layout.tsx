@@ -16,8 +16,11 @@ export const metadata: Metadata = {
   title: "RG Exam Calculator",
   description: "Prepare your exam better!",
   icons: {
-    icon: "/icon.jpeg",
+    icon: "/favicon.ico",
   },
+  openGraph: {
+    images: ["/favicon.ico"],
+  }
 };
 
 export default function RootLayout({
