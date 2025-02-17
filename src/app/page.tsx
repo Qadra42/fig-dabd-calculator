@@ -39,9 +39,8 @@ export default function LevenshteinCalculator() {
   const updateScore = (type: "expert" | "candidate", index: number, value: string) => {
     const sanitizedValue = value.replace(/[^\d.]/g, "")
     const parts = sanitizedValue.split(".")
-    if (parts.length > 2) return
-    if (Number(sanitizedValue) > 1) return
-
+    if (parts.length > 3) return
+  
     if (type === "expert") {
       const newScores = [...expertScores]
       newScores[index] = sanitizedValue
@@ -52,6 +51,7 @@ export default function LevenshteinCalculator() {
       setCandidateScores(newScores)
     }
   }
+  
 
   const addScore = (type: "expert" | "candidate") => {
     if (type === "expert") {
