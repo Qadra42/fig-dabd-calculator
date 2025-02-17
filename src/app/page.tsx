@@ -14,21 +14,29 @@ export default function LevenshteinCalculator() {
   const [candidateScores, setCandidateScores] = useState<string[]>(Array(20).fill(""))
 
   const calculateError = (expert: number[], candidate: number[]): number => {
-    let totalError = 0
-    const maxLength = Math.max(expert.length, candidate.length)
+    const m = expert.length;
+    const n = candidate.length;
+    const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
 
-    for (let i = 0; i < maxLength; i++) {
-      if (i < expert.length && i < candidate.length) {
-        totalError += Math.abs(expert[i] - candidate[i])
-      } else if (i < expert.length) {
-        totalError += expert[i]
-      } else if (i < candidate.length) {
-        totalError += candidate[i]
+    for (let i = 0; i <= m; i++) {
+      for (let j = 0; j <= n; j++) {
+        if (i === 0) {
+          dp[i][j] = j > 0 ? dp[i][j - 1] + candidate[j - 1] : 0;
+        } else if (j === 0) {
+          dp[i][j] = i > 0 ? dp[i - 1][j] + expert[i - 1] : 0;
+        } else {
+          const cost = Math.abs(expert[i - 1] - candidate[j - 1]);
+          dp[i][j] = Math.min(
+            dp[i - 1][j - 1] + cost, // Match
+            dp[i - 1][j] + expert[i - 1], // Delete
+            dp[i][j - 1] + candidate[j - 1] // Insert
+          );
+        }
       }
     }
-
-    return totalError
-  }
+    return dp[m][n];
+  };
+  
 
   const result = useMemo(() => {
     const expert = expertScores.map(Number).filter((score) => !isNaN(score))
