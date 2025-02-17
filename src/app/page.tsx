@@ -61,6 +61,14 @@ export default function LevenshteinCalculator() {
     }
   }
 
+  const clearScores = (type: "expert" | "candidate") => {
+    if (type === "expert") {
+      setExpertScores(Array(20).fill(""))
+    } else {
+      setCandidateScores(Array(20).fill(""))
+    }
+  }
+
   return (
     <div className="container mx-auto py-8">
       <Card>
@@ -93,6 +101,9 @@ export default function LevenshteinCalculator() {
                 <Button variant="outline" size="sm" onClick={() => addScore("expert")}>
                   <Plus className="h-4 w-4" />
                 </Button>
+                <Button variant="outline" size="sm" onClick={() => clearScores("expert")}>
+                  Clear
+                </Button>
               </div>
             </div>
 
@@ -110,6 +121,9 @@ export default function LevenshteinCalculator() {
                 ))}
                 <Button variant="outline" size="sm" onClick={() => addScore("candidate")}>
                   <Plus className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => clearScores("candidate")}>
+                  Clear
                 </Button>
               </div>
             </div>
