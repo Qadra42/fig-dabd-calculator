@@ -115,12 +115,12 @@ export default function LevenshteinCalculator() {
             </div>
 
             <div className="space-y-4">
-              <Label>Result</Label>
+              <Label className="text-xl font-bold">Result</Label>
               <Table>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-medium">Total Error</TableCell>
-                    <TableCell>{result.toFixed(2)}</TableCell>
+                    <TableCell className="text-xl font-bold">Total Error</TableCell>
+                    <TableCell className="text-xl font-bold">{result.toFixed(2)}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
