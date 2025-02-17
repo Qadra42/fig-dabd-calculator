@@ -67,10 +67,10 @@ export default function LevenshteinCalculator() {
         <CardHeader>
           <div className="space-y-4">
             <CardTitle>FIG RG Exam Results Calculation</CardTitle>
-            {/* <div className="border-t pt-4">
+            <div className="border-t pt-4">
               <p className="text-base font-medium">Developed by Viviana Luzando and Francisco Cuadra, Uruguay 🇺🇾</p>
               <p className="text-sm text-muted-foreground">For any inquiries: vivianaluzardoabraham@gmail.com</p>
-            </div> */}
+            </div>
           </div>
           <CardDescription className="mt-4">
             Enter expert and candidate scores to calculate the total error.
